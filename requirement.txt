@@ -1,0 +1,6 @@
+Django==1.11.29
+mysql-connector-python==8.0.20
+protobuf==3.12.2
+pytz==2020.1
+simplejson==3.17.0
+six==1.15.0
