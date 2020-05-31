@@ -1,0 +1,68 @@
+{% extends 'nav.html' %}
+{% block content %}
+      <div class="container">
+
+
+     <h3 class="text-center"> Adding task for project : {{ project_name}} </h3>
+
+      <form action="" method="POST" name="MyTask">
+         {% csrf_token %}
+          {% for task_details in get_particular_task_details %}
+          <input type="hidden" value="{{ task_details.project_id}}" name="project_id">
+          <div class="form-group col-md-4 ">
+         <input type="text" class="form-control" name="task_name" value="{{ task_details.task_name}}" placeholder="title">
+          </div>
+
+          <div class="form-group col-md-4 ">
+         <input type="text" class="form-control" name="task_desc" value="{{ task_details.task_desc}}" placeholder="description">
+          </div>
+          <div class="form-group col-md-4 ">
+            <input type="date" class="form-control" name="start_date" value="{{ task_details.start_date}}">
+          </div>
+
+          <div class="form-group col-md-4 ">
+            <input type="date" class="form-control" name="end_date" value="{{ task_details.end_date}}">
+          </div>
+
+          <div class="form-group col-md-4 ">
+                <select class="form-control" id="sel1" name="assignee">
+                <option value="">Default Assignee</option>
+                    {% for user in all_users %}
+                        <option value="{{ user}}">{{ user}}</option>
+                    {%  endfor %}
+              </select>
+          </div>
+
+          {%  endfor %}
+
+            {% if get_particular_task_details == "" %}
+          <input type="hidden" value="{{ task_details.project_id}}" name="project_id">
+          <div class="form-group col-md-4 ">
+         <input type="text" class="form-control" name="task_name" value="{{ task_details.task_name}}" placeholder="title">
+          </div>
+
+          <div class="form-group col-md-4 ">
+         <input type="text" class="form-control" name="task_desc" value="{{ task_details.task_desc}}" placeholder="description">
+          </div>
+          <div class="form-group col-md-4 ">
+            <input type="date" class="form-control" name="start_date" value="{{ task_details.start_date}}">
+          </div>
+
+          <div class="form-group col-md-4 ">
+            <input type="date" class="form-control" name="end_date" value="{{ task_details.end_date}}">
+          </div>
+
+          <div class="form-group col-md-4 ">
+                <select class="form-control" id="sel1" name="assignee">
+                <option value="">Default Assignee</option>
+                    {% for user in all_users %}
+                        <option value="{{ user}}">{{ user}}</option>
+                    {%  endfor %}
+              </select>
+          </div>
+          {% endif %}
+
+         <button type="submit" value="submit">Submit</button>
+      </form>
+      </div>
+   {% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'nav.html' %}
+{% block content %}
+      <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Project Duration</th>
+        <th>Author</th>
+        <th>All Tasks</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for article in all_projects %}
+      <tr>
+        <td>   {{ article.project_name}}</td>
+        <td>{{ article.project_desc  }}</td>
+        <td>{{ article.project_duration  }}</td>
+        <td>{{ article.author }}</td>
+        <td><a href="/v1/showtasks/?table=task&project_id={{ article.id}}&project_name={{ article.project_name}}">
+            <button class="btn btn-default btn-sm"> List Tasks </button></a>
+
+            <a href="/v1/posttask/?table=task&project_id={{ article.id}}&project_name={{ article.project_name}}">
+            <button class="btn btn-default btn-sm"> Add Task </button></a>
+
+        </td>
+        <td> <a href="/v1/deleteinfo/?table=project&table_primary_col=id&table_auto_id={{ article.id}}">
+            <button class="btn btn-default btn-sm"> Delete </button></a>
+
+        </td>
+
+      </tr>
+     {%  endfor %} 
+    </tbody>
+  </table>
+   {% endblock %}

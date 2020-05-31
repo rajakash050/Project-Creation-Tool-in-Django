@@ -1,0 +1,34 @@
+{% extends 'nav.html' %}
+{% block content %}
+    <h3 class="text-center"> Showing task for project : {{ project_name}} </h3>
+      <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Start date</th>
+        <th>End Data</th>
+        <th>Assignee</th>
+        <th>Add Task</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for article in all_tasks %}
+      <tr>
+        <td>   {{ article.task_name}}</td>
+        <td>{{ article.task_desc  }}</td>
+        <td>{{ article.start_date  }}</td>
+        <td>{{ article.end_date  }}</td>
+        <td>{{ article.assignee }}</td>
+        <td> <a href="/v1/deleteinfo/?table=task&table_primary_col=taskid&table_auto_id={{ article.taskid}}">
+            <button class="btn btn-default btn-sm"> Delete </button></a>
+
+            <a href="/v1/posttask/?taskid={{ article.taskid}}&project_id={{ article.project_id}}&project_name={{ project_name}}">
+            <button class="btn btn-default btn-sm"> Edit </button></a>
+
+        </td>
+      </tr>
+     {%  endfor %} 
+    </tbody>
+  </table>
+   {% endblock %}
