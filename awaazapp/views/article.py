@@ -26,8 +26,8 @@ def postinfo(request):
         # values = (title,content)
         resp = query(qe)
         print(resp)
-        resp = get_all_articles()
-        return render(request, "showarticle.html", {'all_projects': resp, 'base_url': domain_url})
+        resp1 = get_all_articles()
+        return render(request, "showarticle.html", {'all_projects': resp1, 'base_url': domain_url})
     return render(request, "addproject.html", {'base_url':domain_url})
 
 def redirect_view():
@@ -78,8 +78,8 @@ def posttask(request):
         resp = query(qe)
         print(resp)
         resp = get_all_tasks(project_id)
-        return render(request, "showtask.html", {'all_tasks': resp, 'base_url': domain_url})
-    return render(request, "addtask.html", {'all_users': all_users, 'get_particular_task_details': get_particular_task_details,'project_name': project_name, 'base_url':domain_url})
+        return render(request, "showtask.html", {'all_tasks': resp, 'project_name': project_name,'base_url': domain_url})
+    return render(request, "addtask.html", {'all_users': all_users,'project_id':project_id, 'get_particular_task_details': get_particular_task_details,'project_name': project_name, 'base_url':domain_url})
 
 def welcome(request): 
     return render(request, "welcome.html", {})
